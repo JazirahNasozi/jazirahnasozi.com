@@ -1,0 +1,244 @@
+/* Fonts */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #0D1B2A;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #0D1B2A;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+nav .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+nav ul li a:hover {
+    color: #F4C430;
+}
+
+/* Hero Section */
+.home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #0D1B2A, #6B2D84);
+    color: white;
+    padding: 0 50px;
+}
+.hero-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+}
+.hero-text {
+    flex: 1;
+    min-width: 300px;
+}
+.hero-text h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.hero-text h1 span {
+    color: #F4C430;
+}
+.hero-text p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.hero-text .btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    display: inline-block;
+    background: #F4C430;
+    color: #0D1B2A;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+.hero-text .btn:hover {
+    background: #e0b700;
+}
+
+/* Hero Image */
+.hero-image {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid #F4C430;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.5s;
+}
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Sections */
+section {
+    padding: 80px 50px;
+}
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #6B2D84;
+    margin-bottom: 20px;
+}
+ul {
+    padding-left: 20px;
+}
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Skills */
+.skills {
+    margin-top: 40px;
+}
+.skill {
+    margin-bottom: 20px;
+}
+.skill p {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+.skill-bar {
+    width: 0%;
+    height: 15px;
+    background: #6B2D84;
+    border-radius: 5px;
+    transition: width 2s ease-in-out;
+}
+
+/* Projects */
+.project-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.project-item {
+    flex: 1 1 250px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 20px;
+}
+.project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Blog / Journey */
+.blog-post {
+    background: #F4F4F9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Contact */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+input, textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    padding: 12px;
+    background: #6B2D84;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #5a256e;
+}
+.socials a {
+    text-decoration: none;
+    color: #6B2D84;
+    margin-right: 10px;
+    font-weight: 600;
+}
+.socials a:hover {
+    color: #0D1B2A;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0D1B2A;
+    color: white;
+}
+
+/* Animation */
+.animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .home-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-image img {
+        width: 250px;
+        height: 250px;
+    }
+    .project-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 500px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
