@@ -12,6 +12,16 @@ document.querySelectorAll('nav ul li a').forEach(link => {
     });
 });
 
+// ===== Mobile menu toggle (hamburger) =====
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+}
+
 // ===== Animate skill bars when scrolling =====
 const skillBars = document.querySelectorAll('.skill-bar');
 function animateSkills() {
@@ -33,16 +43,6 @@ function animateOnScroll() {
         if (elTop < triggerBottom) {
             el.classList.add('visible');
         }
-    });
-}
-
-// ===== Mobile menu toggle (hamburger) =====
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
-
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
     });
 }
 

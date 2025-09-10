@@ -304,3 +304,48 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== Mobile Menu Fix ===== */
+#menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Default nav links layout */
+#nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    #nav-links {
+        display: none;
+        flex-direction: column;  /* vertical inside dropdown */
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    #nav-links.active {
+        display: flex;
+    }
+
+    #nav-links li a {
+        color: #0D1B2A; /* dark links inside white menu */
+        font-weight: 600;
+    }
+}
+
