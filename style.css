@@ -259,6 +259,8 @@ footer {
 }
 /* Achievements */
 .achievement-item {
+    width: 800px;
+    height: 500px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -266,6 +268,7 @@ footer {
     text-align: center;
     padding: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0 auto 40px auto;
 
 
 }
@@ -274,10 +277,10 @@ footer {
     box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
 }
 .achievement-item img {
-    width: 800px;
-    height: 500px;
+    width: 100%;
+    height: auto;
     border-radius: 5px;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 /* Animation */
