@@ -120,6 +120,7 @@ h2 {
     font-family: 'Poppins', sans-serif;
     color: #6B2D84;
     margin-bottom: 20px;
+    text-align: center;
 }
 ul {
     padding-left: 20px;
@@ -270,9 +271,10 @@ footer {
     box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
 }
 .achievement-item img {
-    width: 100%;
-    height: auto;
+    width: 600px;
+    height: 400px;
     border-radius: 5px;
+    object-fit: fill;
 }
 
 /* Animation */
