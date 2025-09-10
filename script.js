@@ -46,6 +46,51 @@ function animateOnScroll() {
     });
 }
 
+// ===== Certificate Lightbox =====
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+document.body.appendChild(lightbox);
+
+const closeBtn = document.createElement('span');
+closeBtn.innerHTML = "&times;";
+closeBtn.classList.add('close-btn');
+lightbox.appendChild(closeBtn);
+
+const img = document.createElement('img');
+lightbox.appendChild(img);
+
+document.querySelectorAll('.achievement-item img').forEach(certificate => {
+    certificate.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        img.src = certificate.src;
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+});
+
+// Close lightbox when clicking outside the image
+lightbox.addEventListener('click', (e) => {
+    if (e.target !== img && e.target !== closeBtn) {
+        lightbox.classList.remove('active');
+    }
+});
+
+// ===== Typewriter Effect for Hero Section =====
+const typewriterText = document.querySelector('.typewriter');
+const sentence = "Creative, Passionate, and Driven to Make an Impact.";
+let i = 0;
+
+function typeWriter() {
+    if (i < sentence.length) {
+        typewriterText.textContent += sentence.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80); // speed of typing
+    }
+}
+window.addEventListener('load', typeWriter);
+
 // ===== Run animations on scroll & load =====
 window.addEventListener('scroll', () => {
     animateSkills();
