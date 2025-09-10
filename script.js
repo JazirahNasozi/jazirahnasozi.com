@@ -46,29 +46,30 @@ function animateOnScroll() {
     });
 }
 
-// ===== Certificate Lightbox =====
-const lightbox = document.createElement('div');
-lightbox.id = 'lightbox';
-document.body.appendChild(lightbox);
+// ===== Certificates Lightbox =====
+const viewButtons = document.querySelectorAll('.view-btn');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.lightbox .close');
 
-const closeBtn = document.createElement('span');
-closeBtn.innerHTML = "&times;";
-closeBtn.classList.add('close-btn');
-lightbox.appendChild(closeBtn);
-
-const img = document.createElement('img');
-lightbox.appendChild(img);
-
-document.querySelectorAll('.achievement-item img').forEach(certificate => {
-    certificate.addEventListener('click', () => {
-        lightbox.classList.add('active');
-        img.src = certificate.src;
-    });
+viewButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const imgSrc = btn.getAttribute('data-img');
+    lightboxImg.src = imgSrc;
+    lightbox.style.display = 'flex';
+  });
 });
 
 closeBtn.addEventListener('click', () => {
-    lightbox.classList.remove('active');
+  lightbox.style.display = 'none';
 });
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
+});
+
 
 // Close lightbox when clicking outside the image
 lightbox.addEventListener('click', (e) => {
