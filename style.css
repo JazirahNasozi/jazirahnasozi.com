@@ -111,13 +111,22 @@ nav .logo {
     color: #F4C430;
 }
 
+@keyframes blink {
+    0%, 50%, 100% { border-color: #F4C430; }
+    25%, 75% { border-color: transparent; }
+}
+
 #typing-text {
     font-size: 20px;
     margin: 8px 0 20px;
-    display: inline-block;
+    display: inline;
     border-right: 2px solid #F4C430;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
+    max-width: 90%;
+    line-height: 1.4;
+    animation: blink 3s step-end infinite;
+    
 }
 
 .btn {
@@ -421,41 +430,38 @@ footer {
 }
 
 @media (max-width:768px) {
-    #nav-links {
-        display: none;
-        position: absolute;
-        right: 16px;
-        top: 64px;
-        background: #fff;
-        color: #0D1B2A;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 0 8px 22px rgba(0, 0, 0, .12);
-        flex-direction: column;
-    }
+  #nav-links {
+      display: none;
+      position: absolute;
+      right: 16px;
+      top: 64px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .12);
+      flex-direction: column;
+  }
 
-    #nav-links.active {
-        display: flex;
-    }
+  #nav-links.active {
+      display: flex;
+  }
 
-    .menu-toggle {
-        display: block;
-    }
+  #nav-links li a {
+      color:  #0D1B2A;      /* ✅ Change link color to dark */
+      font-weight: 600;
+      padding: 8px 0;
+  }
 
-    .achievement-item {
-        max-width: 100%;
-        flex: 1 1 100%;
-    }
+  #nav-links li a:hover {
+      color: #F4C430;      /* ✅ Gold hover */
+  }
 
-    .hero-image img {
-        width: 220px;
-        height: 220px;
-    }
-
-    .hero-text h1 {
-        font-size: 28px;
-    }
+  .menu-toggle {
+      display: block;
+      cursor: pointer;
+  }
 }
+
 
 @media (max-width:420px) {
     .hero-image img {
@@ -467,32 +473,41 @@ footer {
         font-size: 16px;
     }
 }
-
-@media (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    background: white;   /* white background for dropdown */
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    gap: 15px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.1); /* subtle shadow */
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  nav ul li a {
-    color: #6B2D84;   /* purple links */
-    font-weight: 600;
-  }
-
-  nav ul li a:hover {
-    color: #0D1B2A;   /* dark blue hover */
-  }
+/* ================== DARK MODE (Optional) ================== */
+body.dark-mode {
+    background: #121212;
+    color: #E0E0E0;
 }
-
+body.dark-mode nav {
+    background: #1E1E1E;
+    color: #E0E0E0;
+}
+body.dark-mode .hero-section {
+    background: linear-gradient(90deg, #1E1E1E, #6B2D84);
+}
+body.dark-mode .btn, body.dark-mode .send-btn {
+    background: #F4C430;
+    color: #0D1B2A;
+}
+body.dark-mode .btn:hover, body.dark-mode .send-btn:hover {
+    background: #e0b700;
+}
+body.dark-mode .skills .skill-bar {
+    background: #BB86FC;
+}
+body.dark-mode .project-item {
+    background: #1E1E1E;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .5);
+}
+body.dark-mode .achievement-item {
+    background: #1E1E1E;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .5);
+}
+body.dark-mode .blog-post {
+    background: #1E1E1E;
+}
+body.dark-mode footer {
+    background: #1E1E1E;
+    color: #E0E0E0;
+}
+/* ================== END ================== */
