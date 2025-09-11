@@ -340,12 +340,41 @@ textarea {
     border: 1px solid #ddd;
 }
 
+.send-btn {
+  padding: 12px 25px;
+  background: #F4C430;
+  color: #0D1B2A;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.send-btn:hover {
+  background: #e0b700;
+  transform: scale(1.05);
+}
+
+
 footer {
     text-align: center;
     padding: 24px 16px;
     background: #0D1B2A;
     color: #fff;
 }
+.socials {
+  text-align: center; /* centers the text and inline links */
+  margin-top: 20px;   /* optional spacing */
+}
+
+.socials p {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #0D1B2A;
+}
+
 
 /* ================== BACK TO TOP ================== */
 #back-to-top {
