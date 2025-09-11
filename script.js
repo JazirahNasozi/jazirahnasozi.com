@@ -1,103 +1,146 @@
-// ===== Smooth scrolling for navbar links =====
-document.querySelectorAll('nav ul li a').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+// Wait until DOM ready
+document.addEventListener('DOMContentLoaded', () => {
 
-        // Close mobile menu after clicking a link
-        const navLinks = document.getElementById('nav-links');
+  /* ------------------ Smooth scrolling for internal links ------------------ */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = link.getAttribute('href');
+      if (!target || target === '#') return;
+      const el = document.querySelector(target);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // close mobile menu if open
+      const navLinks = document.getElementById('nav-links');
+      if (navLinks && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
+      }
     });
-});
-
-// ===== Mobile menu toggle (hamburger) =====
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
-
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-}
-
-// ===== Animate skill bars when scrolling =====
-const skillBars = document.querySelectorAll('.skill-bar');
-function animateSkills() {
-    const triggerBottom = window.innerHeight * 0.8;
-    skillBars.forEach(bar => {
-        const barTop = bar.getBoundingClientRect().top;
-        if (barTop < triggerBottom) {
-            bar.style.width = bar.getAttribute('data-skill');
-        }
-    });
-}
-
-// ===== Animate elements on scroll =====
-const animatedElements = document.querySelectorAll('.animate');
-function animateOnScroll() {
-    const triggerBottom = window.innerHeight * 0.9;
-    animatedElements.forEach(el => {
-        const elTop = el.getBoundingClientRect().top;
-        if (elTop < triggerBottom) {
-            el.classList.add('visible');
-        }
-    });
-}
-
-// ===== Certificates Lightbox =====
-const viewButtons = document.querySelectorAll('.view-btn');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.lightbox .close');
-
-viewButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const imgSrc = btn.getAttribute('data-img');
-    lightboxImg.src = imgSrc;
-    lightbox.style.display = 'flex';
   });
-});
 
-closeBtn.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none';
+  /* ------------------ Mobile menu toggle ------------------ */
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
   }
-});
 
+  /* ------------------ Animate skill bars ------------------ */
+  const skillBars = document.querySelectorAll('.skill-bar');
+  function animateSkills() {
+    const triggerBottom = window.innerHeight * 0.85;
+    skillBars.forEach(bar => {
+      const top = bar.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        const value = bar.getAttribute('data-skill') || '0%';
+        bar.style.width = value;
+      }
+    });
+  }
 
-// Close lightbox when clicking outside the image
-lightbox.addEventListener('click', (e) => {
-    if (e.target !== img && e.target !== closeBtn) {
-        lightbox.classList.remove('active');
+  /* ------------------ Animate elements on scroll ------------------ */
+  const animatedEls = document.querySelectorAll('.animate');
+  function animateOnScroll() {
+    const triggerBottom = window.innerHeight * 0.9;
+    animatedEls.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < triggerBottom) el.classList.add('visible');
+    });
+  }
+
+  /* ------------------ Lightbox for certificates ------------------ */
+  const viewBtns = document.querySelectorAll('.view-btn');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = lightbox ? lightbox.querySelector('.close-btn') : null;
+  const backBtn = document.getElementById('back-btn');
+
+  function openLightbox(src, altText = 'Certificate') {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = altText;
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.src = '';
+    document.body.style.overflow = ''; // restore
+  }
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-img');
+      openLightbox(src);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (backBtn) backBtn.addEventListener('click', closeLightbox);
+
+  // click outside image to close
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  // close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  /* ------------------ Typewriter effect ------------------ */
+  const typingEl = document.getElementById('typing-text');
+  const typingText = "Creative Tech Enthusiast | Digital Literacy Advocate";
+  let ti = 0;
+  function typeWriter() {
+    if (!typingEl) return;
+    if (ti < typingText.length) {
+      typingEl.textContent += typingText.charAt(ti);
+      ti++;
+      setTimeout(typeWriter, 80);
+    } else {
+      // keep caret blinking by removing border after done or you can keep it
+      // typingEl.style.borderRight = '2px solid rgba(244,196,48,0.9)';
     }
-});
+  }
 
-// ===== Typewriter Effect for Hero Section =====
-const typewriterText = document.querySelector('.typewriter');
-const sentence = "Creative, Passionate, and Driven to Make an Impact.";
-let i = 0;
+  /* ------------------ Back to Home button ------------------ */
+  const backToTopBtn = document.getElementById('back-to-top');
+  function handleScrollButtons() {
+    if (!backToTopBtn) return;
+    if (window.scrollY > 300) backToTopBtn.classList.add('show');
+    else backToTopBtn.classList.remove('show');
+  }
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      const home = document.getElementById('home');
+      if (home) home.scrollIntoView({ behavior: 'smooth' });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
-function typeWriter() {
-    if (i < sentence.length) {
-        typewriterText.textContent += sentence.charAt(i);
-        i++;
-        setTimeout(typeWriter, 80); // speed of typing
-    }
-}
-window.addEventListener('load', typeWriter);
-
-// ===== Run animations on scroll & load =====
-window.addEventListener('scroll', () => {
+  /* ------------------ Initial run and listeners ------------------ */
+  function onScrollHandlers() {
     animateSkills();
     animateOnScroll();
-});
-window.addEventListener('load', () => {
-    animateSkills();
-    animateOnScroll();
+    handleScrollButtons();
+  }
+
+  // start on load
+  typeWriter();
+  onScrollHandlers();
+
+  // on scroll
+  window.addEventListener('scroll', onScrollHandlers);
+  // on resize (run again so percentages can adapt)
+  window.addEventListener('resize', onScrollHandlers);
+
 });
