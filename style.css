@@ -381,9 +381,9 @@ footer {
     position: fixed;
     right: 22px;
     bottom: 22px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
     background: #6B2D84;
     color: #fff;
     border: none;
