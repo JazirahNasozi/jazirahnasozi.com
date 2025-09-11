@@ -144,3 +144,18 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', onScrollHandlers);
 
 });
+
+// ===== Close mobile menu after clicking a link =====
+const navLinks = document.querySelectorAll('nav ul li a');
+const navMenu = document.querySelector('nav ul');
+const menuToggle = document.getElementById('menu-toggle');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    // Close only if mobile menu is open
+    if (navMenu.classList.contains('active')) {
+      navMenu.classList.remove('active');
+    }
+  });
+});
+
